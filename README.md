@@ -62,4 +62,4 @@ pred    FALSE TRUE
   TRUE      7  144
 ```
 
-## More Details in [vignette](vignettes/fdrSAFE.Rmd)
+## More Details in [vignette](vignettes/fdrSAFE.pdf)
