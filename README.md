@@ -46,7 +46,7 @@ hist(fdrSAFE_res$fdr[truth], main = "Not-Null Tests", xlab = "estimated fdr")
 hist(fdrSAFE_res$fdr[!truth], main = "Null Tests", xlab = "estimated fdr")
 ```
 
-![](example_hist.png){width="537"}
+![](example_hist.png)
 
 Prediction accuracy using a cutoff of 0.2
 
