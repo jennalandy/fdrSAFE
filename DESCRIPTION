@@ -1,6 +1,6 @@
 Package: fdrSAFE
 Title: Selective Aggregation for Local False Discovery Rate (fdr) Estimation
-Version: 0.99.0
+Version: 1.0.0
 Authors@R: 
     person(given = "Jenna",
            family = "Landy",

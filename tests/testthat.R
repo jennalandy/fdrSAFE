@@ -1,4 +1,4 @@
 library(testthat)
-library(gridsemblefdr)
+library(fdrSAFE)
 
-test_check("gridsemblefdr")
+test_check("fdrSAFE")
