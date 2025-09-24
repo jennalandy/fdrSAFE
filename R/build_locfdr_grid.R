@@ -144,7 +144,7 @@ build_locfdr_grid <- function(
   nulltype = c(1,2,3), type = c(0,1), grid_depth = 5,
   parallel_param = NULL, parallel = min(TRUE, n_workers > 1),
   drop_pi0_1 = TRUE,
-  n_workers = max(parallel::detectCores() - 2, 1), verbose = FALSE
+  n_workers = get_n_workers(), verbose = FALSE
 ) {
   pct = seq(pct_range[1], pct_range[2], length.out = grid_depth)
   pct0 = seq(pct0_range[1], pct0_range[2], length.out = grid_depth)

@@ -30,6 +30,9 @@
 #' @param parallel boolean, whether to utilize parallelization
 #' @param verbose boolean, whether to report status
 #'
+#' @param drop_pi0_1 boolean, whether to remove models that estimate pi0 = 1
+#' @param type string, type of synthetic generating model, one of c('symmetric','asymmetric')
+#'
 #' @importFrom BiocParallel DoparParam
 #' @importFrom parallel detectCores
 #'
@@ -48,7 +51,7 @@
 #' @examples
 #' set.seed(123)
 #' test_statistics = c(rnorm(800), runif(100, -10, -5), runif(100, 5, 10))
-#' res = fdrSAFE(test_statistics)
+#' res = fdrSAFE(test_statistics, parallel = FALSE)
 #' res$pi0
 #' res$fdr
 fdrSAFE <- function(
@@ -61,7 +64,7 @@ fdrSAFE <- function(
   fdrtool_grid = 'default',
   qvalue_grid = 'default',
   synthetic_size = length(test_statistics),
-  n_workers = max(parallel::detectCores() - 2, 1),
+  n_workers = get_n_workers(),
   parallel = min(TRUE, n_workers > 1),
   verbose = TRUE,
   drop_pi0_1 = TRUE,

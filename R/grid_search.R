@@ -188,7 +188,7 @@ grid_search <- function(
   qvalue_grid = NULL,
   focus_metric = 'fdrerror',
   parallel = min(TRUE, n_workers > 1),
-  n_workers =  max(parallel::detectCores() - 2, 1),
+  n_workers =  get_n_workers(),
   parallel_param = NULL,
   verbose = TRUE,
   type = 'asymmetric'
@@ -292,11 +292,9 @@ grid_search <- function(
 #' @description if the user has access to ground truth, this function
 #' computes true fdr and Fdr MSE for each model in the grid
 #'
-#' @param synthetic_generator list, result of fit_synthetic_generator()
-#' @param nsim integer, number of datasets to simulate.
-#' If 0, no datasets are simulated and model(s) are randomly selected.
-#' @param synthetic_size integer, sample size of each synthetic dataset
-#' @param ensemble_size integer, number of models chosen to ensemble over
+#' @param test_statistics vector, test statistics
+#' @param true_Fdr vector, true tail-end Fdr values for each test statistic
+#' @param true_fdr vector, true local fdr values for each test statistic
 #'
 #' @param df integer, degrees of freedom of test statistics, if known, or NULL
 #' @param to_pval_function function, converts test statistics vector to a
@@ -312,7 +310,8 @@ grid_search <- function(
 #' @param n_workers integer, number of cores to use if parallel
 #' @param parallel_param `BiocParallel` object
 #'
-#' @param verbose boolean
+#' @param drop_pi0_1 boolean, whether to remove models that estimate pi0 = 1
+#' @param verbose boolean, whether to report status
 #'
 #' @return
 #' \itemize{
@@ -335,7 +334,7 @@ oracle_grid_search <- function(
     qvalue_grid = 'default',
     focus_metric = 'fdrerror',
     parallel = min(TRUE, n_workers > 1),
-    n_workers =  max(parallel::detectCores() - 2, 1),
+    n_workers =  get_n_workers(),
     parallel_param = NULL,
     drop_pi0_1 = TRUE,
     verbose = TRUE

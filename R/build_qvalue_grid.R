@@ -167,7 +167,7 @@ build_qvalue_grid <- function(
   grid_depth = 20,
   drop_pi0_1 = TRUE,
   parallel_param = NULL, parallel = min(TRUE, n_workers > 1),
-  n_workers = max(parallel::detectCores() - 2, 1), verbose = FALSE
+  n_workers = get_n_workers(), verbose = FALSE
 ) {
 
   adj = seq(adj_range[1], adj_range[2], length.out = grid_depth)

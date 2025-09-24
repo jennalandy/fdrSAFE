@@ -38,11 +38,9 @@ fit_synthetic_generator(
 \item{tol}{double, tolerance for change in sum of squared differences in
 parameters in order to stop algorithm}
 
-\item{type}{string, type of null distribution, one of c("Normal","t")}
+\item{verbose}{boolean, whether to report status}
 
-\item{standardize}{logical, whether to divide by standard deviation before fitting}
-
-\item{standardize_by}{}
+\item{type}{string, type of synthetic generating model, one of c('symmetric','asymmetric')}
 }
 \value{
 list, named parameters for the synthetic_generator densities and values

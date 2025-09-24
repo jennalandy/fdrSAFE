@@ -2,8 +2,6 @@
 #'
 #' @param test_statistics vector, test statistics
 #' @param type string, type of null distribution, one of c("Normal","t")
-#' @param standardize logical, whether to divide by standard deviation before fitting
-#' @param standardize_by
 #'
 #' @param sigmasq0 double, initial value for sigmasq0
 #' @param sigmasq1 double, initial value for sigmasq1
@@ -16,6 +14,9 @@
 #' @param maxiter integer, highest number of iterations of EM algorithm allowed
 #' @param tol double, tolerance for change in sum of squared differences in
 #' parameters in order to stop algorithm
+#'
+#' @param verbose boolean, whether to report status
+#' @param type string, type of synthetic generating model, one of c('symmetric','asymmetric')
 #'
 #' @return list, named parameters for the synthetic_generator densities and values
 #' across iterations
@@ -522,15 +523,13 @@ mix_asymmetric <- function(t, pi0, sigmasq0, sigmasq1n, sigmasq1p, pi1n) {
   pi0*null(t, sigmasq0) + (1-pi0)*alt_asymmetric(t, sigmasq1n, sigmasq1p, pi1n)
 }
 
-#' @title Mixture pdf with t as null distribution
+#' Get number of workers (if not provided)
 #'
-#' @param t double, test statistic
-#' @param pi0 double, proportion null
-#' @param sigmasq1 double, variance of alternative distribution
-#'
-#' @return value of mixture density pdf at value t
+#' @returns number of workers available
 #' @noRd
-mix_t <- function(t, pi0, df, sigmasq1) {
-  pi0*null_t(t, df) + (1-pi0)*alt(t, sigmasq1)
+get_n_workers <- function() {
+  if (nzchar(Sys.getenv("_R_CHECK_LIMIT_CORES_"))) {
+    return(2L)  # CRAN policy
+  }
+  max(parallel::detectCores() - 2L, 1L)
 }
-

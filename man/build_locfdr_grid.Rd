@@ -14,7 +14,7 @@ build_locfdr_grid(
   parallel_param = NULL,
   parallel = min(TRUE, n_workers > 1),
   drop_pi0_1 = TRUE,
-  n_workers = max(parallel::detectCores() - 2, 1),
+  n_workers = get_n_workers(),
   verbose = FALSE
 )
 }

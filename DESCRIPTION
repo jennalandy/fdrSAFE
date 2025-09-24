@@ -30,10 +30,13 @@ Imports:
     magrittr,
     BiocParallel,
     rlang,
-    stats
+    stats,
+    tidyr
 Suggests: 
     rmarkdown,
     knitr,
+    ggplot2,
+    ggthemes,
     testthat (>= 3.0.0)
 Remotes:
   BiocManager

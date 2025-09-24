@@ -19,7 +19,7 @@ build_qvalue_grid(
   drop_pi0_1 = TRUE,
   parallel_param = NULL,
   parallel = min(TRUE, n_workers > 1),
-  n_workers = max(parallel::detectCores() - 2, 1),
+  n_workers = get_n_workers(),
   verbose = FALSE
 )
 }

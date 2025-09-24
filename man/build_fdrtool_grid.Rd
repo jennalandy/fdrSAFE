@@ -11,7 +11,7 @@ build_fdrtool_grid(
   grid_depth = 20,
   drop_pi0_1 = TRUE,
   parallel = min(TRUE, n_workers > 1),
-  n_workers = max(parallel::detectCores() - 2, 1),
+  n_workers = get_n_workers(),
   parallel_param = NULL,
   verbose = FALSE
 )

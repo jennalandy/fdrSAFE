@@ -18,13 +18,19 @@ oracle_grid_search(
   qvalue_grid = "default",
   focus_metric = "fdrerror",
   parallel = min(TRUE, n_workers > 1),
-  n_workers = max(parallel::detectCores() - 2, 1),
+  n_workers = get_n_workers(),
   parallel_param = NULL,
   drop_pi0_1 = TRUE,
   verbose = TRUE
 )
 }
 \arguments{
+\item{test_statistics}{vector, test statistics}
+
+\item{true_Fdr}{vector, true tail-end Fdr values for each test statistic}
+
+\item{true_fdr}{vector, true local fdr values for each test statistic}
+
 \item{df}{integer, degrees of freedom of test statistics, if known, or NULL}
 
 \item{to_pval_function}{function, converts test statistics vector to a
@@ -45,16 +51,9 @@ which metric to optimize in the grid search}
 
 \item{parallel_param}{\code{BiocParallel} object}
 
-\item{verbose}{boolean}
+\item{drop_pi0_1}{boolean, whether to remove models that estimate pi0 = 1}
 
-\item{synthetic_generator}{list, result of fit_synthetic_generator()}
-
-\item{nsim}{integer, number of datasets to simulate.
-If 0, no datasets are simulated and model(s) are randomly selected.}
-
-\item{synthetic_size}{integer, sample size of each synthetic dataset}
-
-\item{ensemble_size}{integer, number of models chosen to ensemble over}
+\item{verbose}{boolean, whether to report status}
 }
 \value{
 \itemize{
